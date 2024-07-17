@@ -1,0 +1,94 @@
+# Sure! Here are 15 challenging coding questions related to data manipulation using Polars for a DataFrame, along with their answers and use cases:
+
+# 1. Filter rows where the 'age' column is greater than 30.
+# Answer:
+df_filtered = df.filter(df['age'] > 30)
+
+# Use Case: Selecting only the rows with older employees.
+
+# 2. Calculate the average value of the 'salary' column.
+# Answer:
+average_salary = df['salary'].mean()
+
+# Use Case: Understanding the average salary across all employees.
+
+# 3. Group by 'department' and calculate the maximum salary within each group.
+# Answer:
+max_salary_by_department = df.groupby('department')['salary'].max()
+
+# Use Case: Identifying the highest salary in each department.
+
+# 4. Create a new column 'bonus' which is 10% of the 'salary'.
+# Answer:
+df['bonus'] = df['salary'] * 0.10
+
+# Use Case: Calculating employee bonuses based on their salary.
+
+# 5. Replace missing values in the 'rating' column with the median value.
+# Answer:
+df['rating'].fillna(df['rating'].median(), inplace=True)
+
+# Use Case: Handling missing data in the employee ratings.
+
+# 6. Pivot the DataFrame to create a wide format with 'department' as columns and 'salary' as values.
+# Answer:
+pivoted_df = df.pivot(index='employee_id', columns='department', values='salary')
+
+# Use Case: Creating a summary table with salaries by department.
+
+# 7. Calculate the cumulative sum of the 'sales' column within each 'department'.
+# Answer:
+df['cumulative_sales'] = df.groupby('department')['sales'].cumsum()
+
+# Use Case: Tracking the total sales over time for each department.
+
+# 8. Merge two DataFrames based on a common column 'employee_id'.
+# Answer:
+merged_df = df1.merge(df2, on='employee_id', how='inner')
+
+# Use Case: Combining employee data from different sources.
+
+# 9. Calculate the difference between consecutive values in the 'revenue' column.
+# Answer:
+df['revenue_diff'] = df['revenue'].diff()
+
+# Use Case: Analyzing changes in revenue over time.
+
+# 10. Sort the DataFrame by multiple columns: 'department' (ascending) and 'salary' (descending).
+# Answer:
+sorted_df = df.sort_values(by=['department', 'salary'], ascending=[True, False])
+
+# Use Case: Ordering employees by department and salary.
+
+# 11. Create a new column 'rank' which assigns a rank to each row based on 'salary'.
+# Answer:
+df['rank'] = df['salary'].rank(ascending=False)
+
+# Use Case: Ranking employees based on their salary.
+
+# 12. Calculate the rolling average of the 'profit' column over a window of 3 rows.
+# Answer:
+df['rolling_avg_profit'] = df['profit'].rolling(window=3).mean()
+
+# Use Case: Smoothing out profit fluctuations.
+
+# 13. Remove duplicate rows based on columns 'employee_id' and 'department'.
+# Answer:
+df.drop_duplicates(subset=['employee_id', 'department'], inplace=True)
+
+# Use Case: Ensuring unique employee records.
+
+# 14. Create a new column 'quarter' based on the month in the 'date' column.
+# Answer:
+df['quarter'] = df['date'].dt.quarter
+
+# Use Case: Aggregating data by quarters.
+
+# 15. Apply a custom function to each value in the 'sales' column (e.g., log transformation).
+# Answer:
+df['log_sales'] = df['sales'].apply(lambda x: math.log(x))
+
+# Use Case: Transforming sales data for analysis.
+
+# Feel free to explore these questions further and adapt them for teaching purposes!
+
